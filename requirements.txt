@@ -1,0 +1,2 @@
+# Core dependencies for the class environment.
+# Add project-specific packages below, one per line.
