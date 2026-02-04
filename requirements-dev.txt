@@ -1,2 +1,0 @@
-# Development and tooling dependencies.
-# Example: pytest, black, ruff, mypy
