@@ -11,14 +11,25 @@ Actual Airline Revenue Passenger Miles (Air)
 Rail passenger miles (Rail), and
 Vehicle miles traveled (Car)
 Plot each of the three series (Air, Rail, Car). {20 points}
+
+
 What type of trends appear? Explain. {20 points}
+
+
 Change the scale of the series and add trendlines. Do you notice any new trends? If so, explain. {20 points}
+
+
 Forecasting Department Store Sales {40 points}
 
 The file DepartmentStoresSales.csv contains data on the quarterly sales for a department store over a 6-year period.
 
 Create a well-formatted time plot of the data. {20 points}
+
+
 Which of the following components – trend, seasonality, and noise – seem to be present in this series. Explain. {20 points}
+
+Trend, Seasonality and suprizingly not much noise, the patern is consistend and not super jagged
+
 SUBMISSION INSTRUCTIONS:
 
 Submit a SINGLE ZIP FILE that includes both a PDF of your answers/output/results AND your code
