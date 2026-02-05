@@ -1,15 +1,16 @@
-"""Convert the Homework 1 notebook into a PDF copy.
-
-Usage:
-    python notebook_to_pdf.py
-    python notebook_to_pdf.py --notebook ../code/setup.ipynb --output-dir .
-"""
-
 from __future__ import annotations
 
-import argparse
 import subprocess
 from pathlib import Path
+
+# -----------------------------
+# Hard-coded paths
+# -----------------------------
+SCRIPT_DIR = Path(__file__).resolve().parent
+PROJECT_ROOT = SCRIPT_DIR.parent
+
+NOTEBOOK_PATH = PROJECT_ROOT / "code" / "setup.ipynb"
+OUTPUT_DIR = SCRIPT_DIR
 
 
 def convert_notebook_to_pdf(notebook: Path, output_dir: Path) -> Path:
@@ -36,28 +37,8 @@ def convert_notebook_to_pdf(notebook: Path, output_dir: Path) -> Path:
     return output_dir / f"{notebook.stem}.pdf"
 
 
-def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(
-        description="Convert the Homework 1 notebook to a PDF file."
-    )
-    parser.add_argument(
-        "--notebook",
-        type=Path,
-        default=Path(__file__).resolve().parents[1] / "code" / "setup.ipynb",
-        help="Path to the source notebook (default: homework1/code/setup.ipynb).",
-    )
-    parser.add_argument(
-        "--output-dir",
-        type=Path,
-        default=Path(__file__).resolve().parent,
-        help="Directory where the PDF is written (default: homework1/resources).",
-    )
-    return parser.parse_args()
-
-
 def main() -> None:
-    args = parse_args()
-    pdf_path = convert_notebook_to_pdf(args.notebook, args.output_dir)
+    pdf_path = convert_notebook_to_pdf(NOTEBOOK_PATH, OUTPUT_DIR)
     print(f"PDF created at: {pdf_path}")
 
 
