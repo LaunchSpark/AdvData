@@ -1,0 +1,25 @@
+Homework #1 – Time Series CSC 4260 Spring 2026
+Name: ____________________________________________
+
+Put your analysis and output (results) in this document, and your code in a separate file.
+
+The Impact of September 11 on Air Travel in the U.S. {60 points}
+
+In 2006, the Bureau of Transportation Statistics conducted a study to evaluate the impacts of the September 11, 2001 terrorist attack on U.S. transportation. The goal of the study was to provide a greater understanding of the passenger travel behavior patterns of persons making long-distance trips before and after 9/11. Data on three monthly time series are given in the file Sept11Travel.xls for this period.
+
+Actual Airline Revenue Passenger Miles (Air)
+Rail passenger miles (Rail), and
+Vehicle miles traveled (Car)
+Plot each of the three series (Air, Rail, Car). {20 points}
+What type of trends appear? Explain. {20 points}
+Change the scale of the series and add trendlines. Do you notice any new trends? If so, explain. {20 points}
+Forecasting Department Store Sales {40 points}
+
+The file DepartmentStoresSales.csv contains data on the quarterly sales for a department store over a 6-year period.
+
+Create a well-formatted time plot of the data. {20 points}
+Which of the following components – trend, seasonality, and noise – seem to be present in this series. Explain. {20 points}
+SUBMISSION INSTRUCTIONS:
+
+Submit a SINGLE ZIP FILE that includes both a PDF of your answers/output/results AND your code
+Submit into corresponding iLearn dropbox
