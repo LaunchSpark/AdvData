@@ -1,0 +1,26 @@
+Homework #2 – NLP CSC 4260/5260 Spring 2026
+Name: ____________________________________________
+
+Put your analysis and output (results) in this document, and your code in a separate file.
+
+Note: The following chapter references are just for reference – you do not have to use the code in those chapters. In fact, you may find better ways of accomplishing the tasks.
+
+Word Tagging {50 points}
+
+Textbook Source: Chapter 2.5 Word Tagging
+
+Using the provided I-have-a-dream.txt file, do the following: {20 points}
+Parse the sentences of the speech.
+Run some parts of speech tagging to determine the top-named entities in the speech. (Note: be careful to not include common/stop words.)
+Plot the “Named Entities” on the X-axis and the “Frequency” on the Y-axis (like Figure 2.5 in the book). {10 points}
+What do you notice about the top 10 named entities? Does anything surprise you? Explain your rationale. {20 points}
+Tweets {50 points}
+
+Textbook Source: Chapter 2.6 LDA in Action
+
+Using the provided training and testing tweets files, perform LDA. {30 points}
+Show some of the predictions made on the test data. Does it look accurate to you? Explain your rationale. {20 points}
+SUBMISSION INSTRUCTIONS:
+
+Submit a single PDF file with the answers/output/results specified above PLUS your file with your code
+Submit into corresponding iLearn dropbox

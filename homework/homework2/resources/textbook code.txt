@@ -1,0 +1,95 @@
+# --- POS tagging example (NLTK) ---
+
+# Using the corpus sentences defined earlier, focus on:
+# "Nobody expects the Spanish Inquisition."
+s = nltk.sent_tokenize(sentences)
+s1 = nltk.word_tokenize(s[1])
+
+tagged = nltk.pos_tag(s1)
+# tagged =>
+# [('Nobody', 'NN'),
+#  ('expects', 'VBZ'),
+#  ('the', 'DT'),
+#  ('Spanish', 'JJ'),
+#  ('Inquisition', 'NNP'),
+#  ('.', '.')]
+
+# Tip: inspect tag meanings
+# nltk.help.upenn_tagset()        # full list
+# nltk.help.upenn_tagset('NNP')   # specific tag
+
+
+# --- Scrape Obama 2009 speech + preprocess + POS + NER chunking ---
+
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
+
+wp = "https://www.presidency.ucsb.edu/node/286218"
+pageSource = urlopen(wp).read()
+pa2009 = BeautifulSoup(pageSource, "lxml")
+
+maincontainer = pa2009.find("div", class_="main-container container")
+content = maincontainer.find("div", class_="field-docs-content")
+content_p = content.find_all("p")
+
+# Clean paragraphs and join into one string
+paragraphs = [p.get_text().strip() for p in content_p]
+speech = "\n".join(paragraphs)
+
+# Write speech to local file (bytes)
+with open("obama2009.txt", "wb") as f:
+    f.write(speech.encode())
+
+# Sentence tokenize
+sentences = nltk.sent_tokenize(speech)
+
+# Word tokenize each sentence, then POS tag
+tokenized_sentences = [nltk.word_tokenize(sentence) for sentence in sentences]
+tagged_sentences = [nltk.pos_tag(sentence) for sentence in tokenized_sentences]
+
+
+# --- Named Entity chunking (binary NE chunker) ---
+
+chunked_sentences = nltk.ne_chunk_sents(tagged_sentences, binary=True)
+
+from nltk.tree import Tree
+
+# Example Tree recreation (for illustration)
+ne1 = Tree("NE", [("Nobody", "NN")])
+ne2 = Tree("NE", [("Spanish", "JJ"), ("Inquisition", "NNP")])
+s_tree = Tree("S", [ne1, ("expects", "VBZ"), ("the", "DT"), ne2])
+
+
+def get_entity_names(tree):
+    entity_names = []
+    if hasattr(tree, "label") and tree.label:
+        if tree.label() == "NE":
+            entity_names.append(" ".join([child[0] for child in tree]))
+        else:
+            for child in tree:
+                entity_names.extend(get_entity_names(child))
+    return entity_names
+
+
+# Extract all entity names from the speech
+entity_names = []
+for tree in chunked_sentences:
+    entity_names.extend(get_entity_names(tree))
+
+# Example:
+# entity_names[-5:]
+# ['South Carolina', 'American', 'God', 'United States', 'America']
+
+
+# --- Top 10 named entities by frequency ---
+
+from collections import Counter
+import pandas as pd
+
+data_names = Counter(entity_names)
+
+df = pd.DataFrame(list(data_names.items()), columns=["Entity Name", "Freq"])
+df.set_index("Entity Name", inplace=True)
+
+top10 = df.sort_values("Freq", ascending=False).head(10)
+# top10
